@@ -1,0 +1,10 @@
+version: "3.2"
+services:
+  sga_arangodb:
+    image: arangodb:3.3.4
+    volumes:
+      - /var/docker_data/sga/arangodb:/var/lib/arangodb-apps/_db
+    ports:
+      - 8529:8529
+    environment:
+      - ARANGO_NO_AUTH=1
