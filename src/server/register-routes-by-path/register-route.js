@@ -1,4 +1,4 @@
-const { pick, isArray } = require('lodash')
+const { pick, isArray, castArray } = require('lodash')
 const wrapMiddleware = require('./wrap-middleware')
 
 const toArray = value => isArray(value) ? value : [value]
@@ -41,7 +41,11 @@ const registerRoute = (server, route) => {
   const opts = pick(route, ['path', 'name', 'version'])
   const handlers = getHandlers(route)
 
-  server[method](opts, handlers)
+  toArray(method)
+    .forEach(methodName => {
+      server[methodName](opts, handlers)
+    })
+
 }
 
 module.exports = registerRoute
