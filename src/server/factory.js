@@ -6,6 +6,8 @@ const defaltRoutesDir = path.join(__dirname, '../routes')
 
 const factory = (port, options = {}) => {
   const server = restify.createServer()
+  server.use(restify.plugins.queryParser())
+  server.use(restify.plugins.bodyParser())
 
   registerRoutesByPath(server, options.routes || defaltRoutesDir)
 

@@ -1,3 +1,3 @@
 module.exports = {
-  schema: require('./schema')
+  schema: require('./schema'),
 }
